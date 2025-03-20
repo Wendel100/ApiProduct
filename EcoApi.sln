@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EcoApi", "EcoApi.csproj", "{4C01768C-CB14-C2C5-0252-D8215AFC71BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4C01768C-CB14-C2C5-0252-D8215AFC71BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4C01768C-CB14-C2C5-0252-D8215AFC71BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4C01768C-CB14-C2C5-0252-D8215AFC71BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4C01768C-CB14-C2C5-0252-D8215AFC71BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B7DD15B1-E938-4F6E-A71C-998F4BD6425F}
+	EndGlobalSection
+EndGlobal
