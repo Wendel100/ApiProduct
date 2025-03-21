@@ -8,6 +8,9 @@ namespace EcoApi.Services
 {
     public interface IProductService
     {
-        ProductModel AddProduct(ProductModel product);
+        
+        ProductModel ListByName(ProductModel product);
+        ProductModel ListById(int id);
+        ProductModel AddProduct(ProductModel name);
     }
 }
