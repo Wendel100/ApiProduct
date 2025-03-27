@@ -12,5 +12,8 @@ namespace EcoApi.Services
         ProductModel ListByName(ProductModel product);
         ProductModel ListById(int id);
         ProductModel AddProduct(ProductModel name);
+        ProductModel DeleteProduct(int id);
+        ProductModel ToUpdate(ProductModel id);
+        List <ProductModel> GetAll();
     }
 }

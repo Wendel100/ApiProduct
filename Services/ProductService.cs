@@ -23,5 +23,27 @@ namespace EcoApi.Services
             return product;
         }
 
+        public ProductModel DeleteProduct(int id)
+        { var Del =  _product.Produtos.Find(id);
+           _product.Produtos.Remove(Del);
+           _product.SaveChanges();
+           return Del;
+        }
+
+        public ProductModel ToUpdate(ProductModel id)
+        { var Del = ListById(id.Id);
+        if (Del == null) throw new System.Exception("Erro ao atualizar os dados");;
+        Del.Name = Del.Name;
+        Del.Price = Del.Price;
+        Del.Description =Del.Description;
+        _product.Produtos.Update(Del);
+        _product.SaveChanges();
+        return Del;
+        }
+
+        public List<ProductModel> GetAll()
+        {
+            return _product.Produtos.ToList();
+        }
     }
 }
