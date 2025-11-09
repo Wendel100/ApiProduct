@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EcoApi.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20250320124049_Produtos")]
-    partial class Produtos
+    [Migration("20251029133807_productDt")]
+    partial class productDt
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

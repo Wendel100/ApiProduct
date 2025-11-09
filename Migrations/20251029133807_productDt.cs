@@ -5,7 +5,7 @@
 namespace EcoApi.Migrations
 {
     /// <inheritdoc />
-    public partial class Produtos : Migration
+    public partial class productDt : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

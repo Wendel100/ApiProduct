@@ -11,28 +11,33 @@ namespace EcoApi.Controller
     private readonly IProductService _product = service;
 
         [HttpGet("/{id}")]
-    public IActionResult GetId(int id){
-        var Id = _product.ListById(id);
-        if (Id == null)
-            return NotFound();
+        public IActionResult GetId(int id)
+        {
+            var Id = _product.ListById(id);
+            if (Id == null)
+                return NotFound();
 
-        return Ok(Id);
-    }
+            return Ok(Id);
+        }
     [HttpGet("{name}")]
-    public IActionResult GetName(ProductModel name){
-        _product.ListByName(name);
-        return Ok(name);
-    }
+public IActionResult GetName(string name)
+{
+    var products = _product.ListByName(name);
+    return Ok(products);
+}
+
     [HttpGet]
     public IActionResult GetAll(){
              List<ProductModel> products=_product.GetAll();
             return Ok(products);
     }
-        [HttpPost]
-        public IActionResult ToAdd(ProductModel product){
-            _product.AddProduct(product);
-            return Ok($"Adcionadao com sucesso {product}");
-        }
+[HttpPost("/add")]
+public IActionResult ToAdd(ProductModel product)
+{
+    _product.AddProduct(product);
+    return Ok($"Adicionado com sucesso: {product.Name}");
+}
+
         [HttpDelete("{id}")]
         public IActionResult Delete(int id){
             _product.DeleteProduct(id);

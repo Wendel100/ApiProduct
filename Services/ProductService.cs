@@ -13,9 +13,16 @@ namespace EcoApi.Services
         public ProductService(ProductContext product){
             _product = product;
         }
-        
+
         public ProductModel ListById(int id) => _product.Produtos.Find(id);
-        public ProductModel ListByName(ProductModel name) => _product.Produtos.Find(name);
+        public List<ProductModel> ListByName(string name)
+{
+    return _product.Produtos
+        .ToList() // força a execução no cliente (memória)
+        .Where(p => p.Name.Contains(name, StringComparison.OrdinalIgnoreCase))
+        .ToList();
+}
+
         public ProductModel AddProduct(ProductModel product)
         {
             _product.Produtos.Add(product);
