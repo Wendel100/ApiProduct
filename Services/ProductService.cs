@@ -1,10 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using EcoApi.Controller.DB;
 using EcoApi.Model;
-
 namespace EcoApi.Services
 {
     public class ProductService : IProductService
@@ -25,6 +20,15 @@ namespace EcoApi.Services
 
         public ProductModel AddProduct(ProductModel product)
         {
+            if (product.ImagemUpload != null)
+            {
+                using (var stream = new MemoryStream())
+                {
+                    product.ImagemUpload.CopyTo(stream);
+                    product.Dados = stream.ToArray();
+                }
+            }
+
             _product.Produtos.Add(product);
             _product.SaveChanges();
             return product;
@@ -53,4 +57,4 @@ namespace EcoApi.Services
             return _product.Produtos.ToList();
         }
     }
-}
+    }
