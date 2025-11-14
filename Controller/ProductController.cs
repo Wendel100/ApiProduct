@@ -26,7 +26,7 @@ namespace EcoApi.Controller
             return Ok(products);
         }
 
-        [HttpGet]
+        [HttpGet("/todos")]
         public IActionResult GetAll()
         {
             List<ProductModel> products = _product.GetAll();

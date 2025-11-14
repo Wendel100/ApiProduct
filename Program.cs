@@ -11,7 +11,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddDbContext<ProductContext>(options =>
-options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoPadrao")));
+options.UseNpgsql(builder.Configuration.GetConnectionString("ConexaoPadrao")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
