@@ -4,26 +4,43 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddControllersWithViews();
-builder.Services.AddSwaggerGen();
-builder.Services.AddScoped<IProductService, ProductService>();
+// Porta obrigatória para ambiente Render
 var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+
+// Connection string do Render
+var connectionString =
+    builder.Configuration.GetConnectionString("ConexaoPadrao")
+    ?? Environment.GetEnvironmentVariable("DATABASE_URL");
+
+// Serviços da API
+builder.Services.AddControllers(); // API, não MVC
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+// Serviços da aplicação
+builder.Services.AddScoped<IProductService, ProductService>();
+
+// Banco PostgreSQL
 builder.Services.AddDbContext<ProductContext>(options =>
-options.UseNpgsql(builder.Configuration.GetConnectionString("ConexaoPadrao")?? Environment.GetEnvironmentVariable("DATABASE_URL")));
+    options.UseNpgsql(connectionString));
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
+// Somente em desenvolvimento: Swagger
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+// NÃO usar HTTPS na Render
+// app.UseHttpsRedirection();  ❌ Removido
+
+// Mapear controllers
 app.MapControllers();
-app.UseStaticFiles();
-app.UseHttpsRedirection();
+
+// Endpoint simples pra teste
+app.MapGet("/", () => "API funcionando na Render!");
 
 app.Run();
