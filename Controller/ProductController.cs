@@ -5,12 +5,12 @@ using Microsoft.AspNetCore.Mvc;
 namespace EcoApi.Controller
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("apiItem/[controller]")]
     public class ProductController(IProductService service) : ControllerBase
     {
         private readonly IProductService _product = service;
 
-        [HttpGet("/{id}")]
+        [HttpGet("/item/{id}")]
         public IActionResult GetId(int id)
         {
             var Id = _product.ListById(id);
@@ -19,7 +19,7 @@ namespace EcoApi.Controller
 
             return Ok(Id);
         }
-        [HttpGet("{name}")]
+        [HttpGet("/itemName/{name}")]
         public IActionResult GetName(string name)
         {
             var products = _product.ListByName(name);
@@ -39,7 +39,7 @@ namespace EcoApi.Controller
             return Ok($"Adicionado com sucesso: {product.Name}");
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("/delete/{id}")]
         public IActionResult Delete(int id)
         {
             _product.DeleteProduct(id);
@@ -52,7 +52,7 @@ namespace EcoApi.Controller
             _product.ToUpdate(id);
             return Ok($"Produto atualizado com sucesso {id}");
         }
-        [HttpGet("image/{id}")]
+        [HttpGet("/image/{id}")]
 public IActionResult GetImage(int id)
 {
     var product = _product.ListById(id);
