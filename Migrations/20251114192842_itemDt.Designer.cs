@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace EcoApi.Migrations
 {
     [DbContext(typeof(ProductContext))]
-    [Migration("20251114183445_itemDt")]
+    [Migration("20251114192842_itemDt")]
     partial class itemDt
     {
         /// <inheritdoc />
