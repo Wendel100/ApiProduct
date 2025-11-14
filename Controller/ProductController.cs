@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EcoApi.Controller
 {
     [ApiController]
-    [Route("apiItem/[controller]")]
+    [Route("api/[controller]")]
     public class ProductController(IProductService service) : ControllerBase
     {
         private readonly IProductService _product = service;
@@ -19,7 +19,7 @@ namespace EcoApi.Controller
 
             return Ok(Id);
         }
-        [HttpGet("/itemName/{name}")]
+        [HttpGet("/name/{name}")]
         public IActionResult GetName(string name)
         {
             var products = _product.ListByName(name);
