@@ -10,8 +10,10 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllersWithViews();
 builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IProductService, ProductService>();
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
 builder.Services.AddDbContext<ProductContext>(options =>
-options.UseNpgsql(builder.Configuration.GetConnectionString("ConexaoPadrao")));
+options.UseNpgsql(builder.Configuration.GetConnectionString("ConexaoPadrao")?? Environment.GetEnvironmentVariable("DATABASE_URL")));
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
