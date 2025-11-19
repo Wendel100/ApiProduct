@@ -7,8 +7,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Porta obrigatória para ambiente Render
 // Connection string do Render
 var connectionString =
-    builder.Configuration.GetConnectionString("ConexaoPadrao")
-    ?? Environment.GetEnvironmentVariable("DATABASE_URL");
+    builder.Configuration.GetConnectionString("ConexaoPadrao");
 
 // Serviços da API
 builder.Services.AddControllers(); // API, não MVC
@@ -30,16 +29,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-// NÃO usar HTTPS na Render
-// app.UseHttpsRedirection();  ❌ Removido
-
 // Mapear controllers
 app.MapControllers();
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller=Product}/");
-// Endpoint simples pra teste
 app.MapGet("/", () => "API funcionando na Render!");
 
 app.Run();
