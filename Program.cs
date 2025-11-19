@@ -5,9 +5,6 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Porta obrigatória para ambiente Render
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
-
 // Connection string do Render
 var connectionString =
     builder.Configuration.GetConnectionString("ConexaoPadrao")
@@ -39,7 +36,9 @@ if (app.Environment.IsDevelopment())
 
 // Mapear controllers
 app.MapControllers();
-
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Product}/");
 // Endpoint simples pra teste
 app.MapGet("/", () => "API funcionando na Render!");
 
